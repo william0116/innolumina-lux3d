@@ -275,6 +275,7 @@ export default function Preview3DPage() {
       addPointRecord({
         type: 'consume',
         amount: cost,
+        balance: newBalance,
         description: type === 'resin' ? '3D打印树脂母模定制 ×1次' : '琉璃成品定制 ×1次',
         createdAt: new Date().toLocaleString('zh-CN'),
       });

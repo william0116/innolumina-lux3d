@@ -71,7 +71,6 @@ function patchXhr() {
     xhr.open = function (method: string, url: string | URL, ...rest: any[]) {
       probeUrl = typeof url === "string" ? url : url.toString();
       if (isProbeUrl(probeUrl)) return; // 拦截：不真正打开连接
-      // @ts-expect-error 透传原始 open 参数
       return originalOpen(method, url, ...rest);
     };
 
@@ -92,8 +91,10 @@ function patchXhr() {
           value: JSON.stringify(payload),
           configurable: true,
         });
-        if (typeof xhr.onreadystatechange === "function") xhr.onreadystatechange();
-        if (typeof xhr.onload === "function") xhr.onload();
+        if (typeof xhr.onreadystatechange === "function")
+          xhr.onreadystatechange.call(xhr, undefined as never);
+        if (typeof xhr.onload === "function")
+          xhr.onload.call(xhr, undefined as never);
         return;
       }
       return originalSend(body);
