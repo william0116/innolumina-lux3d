@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "rm -rf dist/client && MIAODA_BUILD_TARGET=standalone npx vite build",
+  "outputDirectory": "dist/client",
+  "env": {
+    "MIAODA_BUILD_TARGET": "standalone"
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
