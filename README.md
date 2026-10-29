@@ -4,6 +4,9 @@
 
 **Aholo 全球 3D AI 黑客松参赛作品** —— 基于群核科技 **Aholo Lux3D** 3D 生成模型，打造从创意文字到 2D 效果图、再到 3D 数字模型的琉璃器物定制闭环，让普通人也能设计自己的琉璃作品。
 
+**在线 Demo：** https://william0116.github.io/innolumina-lux3d/
+**源码仓库：** https://github.com/william0116/innolumina-lux3d
+
 ## 项目简介
 
 传统琉璃创作存在三大痛点：设计门槛高、打样成本贵周期长、供需信息不匹配。本平台用 AI 降低传统工艺的设计门槛：
@@ -60,11 +63,21 @@ npm run dev
 
 浏览器访问终端输出的本地地址（默认 `http://localhost:8001`）。
 
-### 4. 生产构建
+### 4. 独立部署构建（standalone）
+
+脱离妙搭平台独立部署时，使用 standalone 模式构建（自动切换 HashRouter、摘除平台监控占位符），产物输出到 `dist/client/`：
 
 ```bash
-npm run build
+MIAODA_BUILD_TARGET=standalone npx vite build
 ```
+
+### 5. 部署到 GitHub Pages
+
+仓库已配置 `.github/workflows/deploy.yml`：推送 `main` 分支即自动安装依赖、standalone 构建并发布到 GitHub Pages。
+
+- 线上路径为子路径 `/innolumina-lux3d/`，CI 构建时通过 `VITE_BASE_PATH` 注入资源前缀。
+- 需要在仓库 **Settings → Secrets and variables → Actions** 配置 Secret：`VITE_LUX3D_API_KEY`（构建期注入，不进入公开源码）。
+- 首次发布需在 **Settings → Pages** 将 Source 设为 **GitHub Actions**。
 
 ## 环境变量
 
