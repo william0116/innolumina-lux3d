@@ -1,109 +1,100 @@
-# 项目技术规范
+# InnoLumina 琉衍工坊 · AI 琉璃数字化定制平台
+
+> 光自数字来，万象衍为琉。
+
+**Aholo 全球 3D AI 黑客松参赛作品** —— 基于群核科技 **Aholo Lux3D** 3D 生成模型，打造从创意文字到 2D 效果图、再到 3D 数字模型的琉璃器物定制闭环，让普通人也能设计自己的琉璃作品。
+
+## 项目简介
+
+传统琉璃创作存在三大痛点：设计门槛高、打样成本贵周期长、供需信息不匹配。本平台用 AI 降低传统工艺的设计门槛：
+
+1. **创意输入**：用文字描述琉璃构想
+2. **AI 生成效果图**：自动生成多张方案供选择
+3. **转 3D 模型**：基于 Lux3D 图生 3D，一键生成三维数字模型
+4. **工艺校验**：自动检测网格完整性、最小壁厚、镂空结构等铸造风险
+5. **下载 / 下单**：下载 GLB 模型或进入实体制造流程
 
 ## 技术栈
 
-- 前端: React 19 + TypeScript
-- 样式: Tailwind CSS v4
-- UI 组件: shadcn/ui `import { Button } from "@/components/ui/button";`
-- 图标: lucide-react `import { SearchIcon } from "lucide-react";`
-- 图表: echarts-for-react `import ReactECharts from "echarts-for-react";`
-- 动画: framer-motion `import { motion } from "framer-motion";`
-- 路由: react-router-dom `import { Link, useNavigate } from "react-router-dom";`
+- **前端**：React 19 + Vite 8 + TypeScript
+- **样式 / UI**：Tailwind CSS v4 + shadcn/ui
+- **3D 渲染**：Three.js + GLTFLoader
+- **3D 生成**：Aholo Lux3D API（极速版 G1-Turbo / 标准版 G1）
+- **动画**：framer-motion
 
----
+## 核心功能
+
+- 文生创意、效果图方案选择
+- Lux3D 图生 3D，支持极速版（约 20 秒）与标准版（约 3 分钟）切换
+- 本地上传参考图（自动压缩至 1024px / JPEG 80%）
+- Three.js 在线 3D 预览（旋转、缩放、自动旋转、淡入动画）
+- GLB 模型下载
+- 工艺可行性校验面板
+- 作品管理、个人中心、订单、积分体系
+
+## 本地运行
+
+### 1. 安装依赖
+
+```bash
+npm install
+```
+
+### 2. 配置环境变量
+
+复制示例文件并填入你的 Lux3D API Key（在 [Aholo 开发者后台](https://labs.aholo.ai/api-keys) 获取）：
+
+```bash
+cp .env.example .env.local
+```
+
+```env
+VITE_LUX3D_API_KEY=your_api_key_here
+```
+
+### 3. 启动开发环境
+
+```bash
+npm run dev
+```
+
+浏览器访问终端输出的本地地址（默认 `http://localhost:8001`）。
+
+### 4. 生产构建
+
+```bash
+npm run build
+```
+
+## 环境变量
+
+| 变量 | 说明 | 是否必填 |
+|------|------|----------|
+| `VITE_LUX3D_API_KEY` | Aholo Lux3D API Key | 是 |
+
+> 开发环境通过 Vite proxy 转发 `/api/lux3d` 到官方网关；生产环境直连 `https://api.aholo.ai/global/lux3d/v1`。
 
 ## 目录结构
 
 ```
 src/
-├── index.tsx            # 入口（勿修改）
-├── app.tsx              # 路由配置（仅在 <Routes> 内增删 <Route>）
-├── index.css            # 全局样式 + 主题变量
-├── components/          # 基础 UI 组件（禁止存放业务组件）
-│   ├── layout.tsx       # 全局布局容器（含 <Outlet />）
-│   └── ui/              # shadcn/ui 内置组件（勿修改）
-├── pages/               # 页面模块（每个页面一个目录）
-│   ├── <PageName>/      # 页面目录示例
-│   │   ├── PageName.tsx        # 页面入口文件与目录同名
-│   │   └── components/         # 页面专属组件
-│   └── NotFoundPage/
-│       └── NotFoundPage.tsx
-├── hooks/               # 自定义 Hooks
-└── lib/                 # 工具函数（cn() 等）
-
-shared/
-└── static/              # 静态资源
-    ├── data/            # 数据文件（JSON）
-    └── images/          # 图片资源
+├── app.tsx              # 路由配置
+├── lib/
+│   ├── lux3d.ts         # Lux3D API 封装（文生3D / 图生3D / 任务轮询）
+│   └── app-storage.ts   # 本地存储统一封装
+├── components/          # 通用 UI 与 3D 组件
+└── pages/
+    ├── HomePage/        # 首页
+    ├── CreationPage/    # 创作页（效果图 + 转 3D）
+    ├── Preview3DPage/   # 3D 预览与重新生成
+    ├── SquarePage/      # 作品广场
+    ├── OrderPage/       # 下单
+    ├── ProfilePage/     # 个人中心
+    └── ...
 ```
 
----
+## 赛事信息
 
-## 模板初始状态
-
-- `app.tsx` 首页路由指向平台内置的 `<Welcome />` 组件
-- 开发时需将 `index` 路由替换为业务首页，并在 `pages/` 下创建对应页面目录
-- `layout.tsx` 为空壳容器（仅 `<Outlet />`），需根据需求实现导航和布局
-
----
-
-## 禁止修改的文件
-
-| 文件 | 原因 |
-|------|------|
-| `src/index.tsx` | Provider 层级 + 样式引入，由模板管理 |
-| `src/components/ui/*` | shadcn/ui 内置组件，版本锁定 |
-
----
-
-## 文件放置规则
-
-| 内容类型 | 放置位置 |
-|---------|---------|
-| 新页面 | `src/pages/<PageName>/PageName.tsx` |
-| 页面专属组件 | `src/pages/<PageName>/components/` |
-| 自定义 Hooks | `src/hooks/` |
-| 工具函数 | `src/lib/` |
-| 静态数据文件 | `shared/static/data/` |
-| 静态图片 | `shared/static/images/` |
-
----
-
-## 导入路径
-
-```typescript
-// @/ 别名 → src/
-import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
-
-// @shared/ 别名 → shared/
-import heroImage from "@shared/static/images/hero.png";
-import configData from "@shared/static/config.json";
-```
-
----
-
-## 路由配置
-
-- 新增页面需在 `src/app.tsx` 的 `<Routes>` 内注册 `<Route>`
-- `BrowserRouter` 已在 `index.tsx` 中配置，`app.tsx` 中**禁止**再包裹 Router
-
----
-
-## 主题变量
-
-主题色定义在 `src/index.css`，通过 `:root` CSS 变量 + `@theme inline` 注册到 Tailwind。
-
-| 用途 | Tailwind 类 | CSS 变量 |
-|------|------------|----------|
-| 页面背景 | `bg-background` | `--background` |
-| 主文本 | `text-foreground` | `--foreground` |
-| 卡片背景 | `bg-card` | `--card` |
-| 次要文本 | `text-muted-foreground` | `--muted-foreground` |
-| 主色 | `bg-primary` / `text-primary` | `--primary` |
-| 强调色 | `bg-accent` | `--accent` |
-| 边框 | `border-border` | `--border` |
-| 危险色 | `text-destructive` | `--destructive` |
-| 图表色 | `bg-chart-1` ~ `bg-chart-5` | `--chart-1` ~ `--chart-5` |
-
-HSL 格式使用**空格分隔**：`--primary: hsl(150 60% 40%);`
+- 赛事：Aholo 全球 3D AI 黑客松（群核科技主办）
+- 时间：2026.10.19 – 2026.11.19
+- 团队：琉衍工坊
