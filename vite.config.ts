@@ -15,9 +15,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/lux3d': {
-        target: 'https://api.aholo.ai',
+        target: 'https://api.aholo3d.cn',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/lux3d/, '/global/lux3d/v1'),
+        rewrite: (path) => path.replace(/^\/api\/lux3d/, '/lux3d/v1'),
       },
     },
   },

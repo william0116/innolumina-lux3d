@@ -1,0 +1,9 @@
+name = "innolumina-lux3d-proxy"
+main = "src/index.js"
+compatibility_date = "2026-10-29"
+
+# 上游网关（默认国内站；如需切换全球站改为 https://api.aholo.ai/global/lux3d/v1）
+[vars]
+UPSTREAM = "https://api.aholo3d.cn/lux3d/v1"
+
+# LUX3D_API_KEY 通过 `wrangler secret put LUX3D_API_KEY` 注入，禁止写进本文件或提交仓库。

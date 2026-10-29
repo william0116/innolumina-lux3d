@@ -37,7 +37,8 @@ jobs:
         env:
           MIAODA_BUILD_TARGET: standalone
           VITE_BASE_PATH: /innolumina-lux3d/
-          VITE_LUX3D_API_KEY: ${{ secrets.VITE_LUX3D_API_KEY }}
+          # 生产走 Cloudflare Worker 反向代理；Key 由 Worker 服务端持有，前端不打包
+          VITE_LUX3D_PROXY: ${{ secrets.VITE_LUX3D_PROXY }}
         run: |
           rm -rf dist/client
           npx vite build

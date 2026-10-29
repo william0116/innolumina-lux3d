@@ -31,7 +31,7 @@ import { MOCK_WORKS } from '@/data/glassmorphism';
 import type { IWork } from '@/data/glassmorphism';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
-import { textTo3D, waitForTask, imageTo3DByUrl } from '@/lib/lux3d';
+import { textTo3D, waitForTask, imageTo3DByUrl, proxyAssetUrl, downloadAsset } from '@/lib/lux3d';
 
 // 工艺校验项定义
 interface InspectionItem {
@@ -148,14 +148,7 @@ export default function Preview3DPage() {
     }
     try {
       toast.info('正在下载 GLB 模型...');
-      // 直接下载 GLB 文件
-      const a = document.createElement('a');
-      a.href = work.model3d.url;
-      a.download = work.model3d.fileName || 'model.glb';
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      await downloadAsset(work.model3d.url, work.model3d.fileName || 'model.glb');
       toast.success('GLB 模型已开始下载');
     } catch (err) {
       toast.error(`下载失败: ${err instanceof Error ? err.message : '未知错误'}`);
@@ -400,7 +393,7 @@ export default function Preview3DPage() {
                   </div>
                 }>
                   <div className="aspect-[4/3] w-full">
-                    <Glass3DViewer color={modelColor} autoRotate={autoRotate} modelUrl={work.model3d?.url} />
+                    <Glass3DViewer color={modelColor} autoRotate={autoRotate} modelUrl={work.model3d?.url ? proxyAssetUrl(work.model3d.url) : undefined} />
                   </div>
                 </ErrorBoundary>
               </CardContent>
