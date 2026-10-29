@@ -1,0 +1,41 @@
+{
+  "id": "colored_glaze_2d_to_3d_1",
+  "pluginKey": "@official-plugins/ai-image-to-image",
+  "pluginVersion": "1.0.23",
+  "name": "琉璃2D转3D风格转换",
+  "description": "将2D琉璃效果图转换为3D线框/渲染风格图像，模拟3D建模输出效果",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "glaze_image": {
+        "type": "array",
+        "format": "plugin-image-url",
+        "description": "待转换的2D琉璃效果图",
+        "items": {
+          "type": "string"
+        }
+      },
+      "custom_requirement": {
+        "type": "string",
+        "description": "自定义转换要求（如指定线框风格、渲染材质等，可选）"
+      },
+      "image_ratio": {
+        "type": "string",
+        "description": "输出图片比例，支持1:1、4:3、3:4、16:9、9:16、3:2、2:3，默认为1:1（可选）"
+      }
+    },
+    "required": [
+      "glaze_image"
+    ]
+  },
+  "formValue": {
+    "prompt": "你是专业的3D建模风格转换专家，擅长将2D图像转换为逼真的3D线框或渲染风格效果。请将提供的2D琉璃效果图转换为3D风格图像，模拟专业3D建模软件的输出效果：1. 保留琉璃本身的材质特征、色彩和纹理；2. 呈现3D立体结构感，可添加适当的线框轮廓或写实渲染效果；3. 保持整体构图和主体元素不变；4. 输出效果需具备专业3D建模作品的质感和光影效果。{{input.custom_requirement}}",
+    "ratio": "{{input.image_ratio}}",
+    "referenceImages": "{{input.glaze_image}}",
+    "watermark": true
+  },
+  "createdAt": 1789533886398,
+  "updatedAt": 1789533886398,
+  "createdBy": 7574879620562963417
+}

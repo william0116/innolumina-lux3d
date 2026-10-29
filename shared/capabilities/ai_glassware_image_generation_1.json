@@ -1,0 +1,32 @@
+{
+  "id": "ai_glassware_image_generation_1",
+  "pluginKey": "@official-plugins/ai-text-to-image",
+  "pluginVersion": "1.0.21",
+  "name": "琉璃器物效果图生成",
+  "description": "用于AI创作工作台，根据用户输入的文字描述生成高质量琉璃器物效果图，支持自定义尺寸，无水印。",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "glassware_description": {
+        "type": "string",
+        "description": "琉璃器物的具体文字描述，包含造型、颜色、风格、用途等细节信息"
+      },
+      "image_ratio": {
+        "type": "string",
+        "description": "图片比例，可选值：1:1、4:3、3:4、16:9、9:16、3:2、2:3，默认1:1"
+      }
+    },
+    "required": [
+      "glassware_description"
+    ]
+  },
+  "formValue": {
+    "prompt": "你是专业的琉璃工艺品设计视觉生成专家，擅长制作精美逼真的琉璃器物效果图。\n\n请根据以下描述生成高品质琉璃器物效果图：\n器物描述：{{input.glassware_description}}\n\n画面要求：\n1. 材质：真实还原琉璃的通透感、光泽度、流光溢彩的视觉效果，展现琉璃的半透明特性和色彩渐变层次\n2. 工艺：体现精湛的琉璃烧制工艺，细节精致，边缘光滑圆润\n3. 背景：简洁高级的纯色或渐变背景，突出琉璃器物主体\n4. 光线：柔和自然的光线，清晰展现琉璃的通透质感和色彩变化\n5. 风格：写实摄影风格，专业产品摄影质感，画面清晰细腻\n\n质量要求：\n- 分辨率高，细节丰富\n- 色彩鲜艳和谐\n- 无多余元素干扰\n- 整体视觉效果高端精致",
+    "ratio": "{{input.image_ratio}}",
+    "watermark": false
+  },
+  "createdAt": 1789533883247,
+  "updatedAt": 1789533883247,
+  "createdBy": 7574879620562963417
+}
