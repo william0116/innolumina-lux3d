@@ -17,14 +17,14 @@ import type { IWork } from '@/data/glassmorphism';
 import { avatarImages } from '@lark-apaas/client-toolkit-lite';
 
 // inno.Studio 真实产品图
-const INNO_WALLEDORF = 'https://aka.doubaocdn.com/s/tURJSa69Pp';
-const INNO_AMBER_BOX = 'https://aka.doubaocdn.com/s/OcXBD3ZduI';
-const INNO_CELADON_BOX = 'https://aka.doubaocdn.com/s/S2UV8x8OJW';
-const INNO_BEGONIA = 'https://aka.doubaocdn.com/s/vzu0aDGEEo';
-const INNO_GREEN_SET = 'https://aka.doubaocdn.com/s/MuSariB5Zi';
-const INNO_EXHIBITION = 'https://aka.doubaocdn.com/s/LVbPrWhVuf';
-const INNO_ZHUYE = 'https://aka.doubaocdn.com/s/ebuZ2qj5Qp';
-const INNO_AMBER_CHANG = 'https://aka.doubaocdn.com/s/5Vf3Ioknni';
+const INNO_WALLEDORF = 'images/products/amber-open.jpg';
+const INNO_AMBER_BOX = 'images/products/amber-box.jpg';
+const INNO_CELADON_BOX = 'images/products/amber-open.jpg';
+const INNO_BEGONIA = 'images/products/amber-open.jpg';
+const INNO_GREEN_SET = 'images/products/amber-open.jpg';
+const INNO_EXHIBITION = 'images/products/amber-open.jpg';
+const INNO_ZHUYE = 'images/products/amber-box.jpg';
+const INNO_AMBER_CHANG = 'images/products/amber-box.jpg';
 
 const TEST_USER_ID = 'user_test_001';
 

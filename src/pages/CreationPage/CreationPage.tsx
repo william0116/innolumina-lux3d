@@ -246,27 +246,27 @@ export default function CreationPage() {
       // 预设图片库（按风格分类）
       const imagePool = {
         amber: [ // 琥珀色系
-          'https://aka.doubaocdn.com/s/OcXBD3ZduI',
-          'https://aka.doubaocdn.com/s/5Vf3Ioknni',
+          'images/products/amber-box.jpg',
+          'images/products/amber-box.jpg',
         ],
         green: [ // 青绿/翠绿色系
-          'https://aka.doubaocdn.com/s/S2UV8x8OJW',
-          'https://aka.doubaocdn.com/s/MuSariB5Zi',
-          'https://aka.doubaocdn.com/s/SRfKds6g1J',
+          'images/products/amber-open.jpg',
+          'images/products/amber-open.jpg',
+          'images/products/amber-open.jpg',
         ],
         blue: [ // 蓝色系
-          'https://aka.doubaocdn.com/s/7rwGii02CN',
-          'https://aka.doubaocdn.com/s/1MhRM9Eeqe',
+          'images/products/amber-box.jpg',
+          'images/products/amber-box.jpg',
         ],
         bamboo: [ // 竹叶/花卉纹样
-          'https://aka.doubaocdn.com/s/ebuZ2qj5Qp',
-          'https://aka.doubaocdn.com/s/vzu0aDGEEo',
+          'images/products/amber-box.jpg',
+          'images/products/amber-open.jpg',
         ],
         default: [ // 默认
-          'https://aka.doubaocdn.com/s/OcXBD3ZduI',
-          'https://aka.doubaocdn.com/s/S2UV8x8OJW',
-          'https://aka.doubaocdn.com/s/MuSariB5Zi',
-          'https://aka.doubaocdn.com/s/ebuZ2qj5Qp',
+          'images/products/amber-box.jpg',
+          'images/products/amber-open.jpg',
+          'images/products/amber-open.jpg',
+          'images/products/amber-box.jpg',
         ],
       };
 
