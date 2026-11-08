@@ -27,16 +27,28 @@ function safeSet(key: string, value: unknown) {
   }
 }
 
+// 种子作品 ID 集合（内置示例作品，始终展示）
+const SEED_IDS = new Set(MOCK_SQUARE_WORKS.map((w) => w.id));
+
+// 合并内置种子作品与存储中的用户作品（按 ID 去重，用户作品优先），
+// 避免 localStorage 残留空数组时广场空白。
+function mergeWithSeeds(stored: ISquareWork[]): ISquareWork[] {
+  const userWorks = stored.filter((w) => !SEED_IDS.has(w.id));
+  return [...MOCK_SQUARE_WORKS, ...userWorks];
+}
+
 // 广场作品（所有公开作品）
 // 广场公开作品（仅审核通过的）
 export function getSquareWorks(): ISquareWork[] {
-  const all = safeGet<ISquareWork[]>(KEY_SQUARE, MOCK_SQUARE_WORKS);
+  const stored = safeGet<ISquareWork[]>(KEY_SQUARE, []);
+  const all = mergeWithSeeds(stored);
   return all.filter((w) => w.auditStatus === 'approved' && w.isPublic);
 }
 
 // 获取全部广场作品（含待审核，用于后台）
 export function getAllSquareWorks(): ISquareWork[] {
-  return safeGet<ISquareWork[]>(KEY_SQUARE, MOCK_SQUARE_WORKS);
+  const stored = safeGet<ISquareWork[]>(KEY_SQUARE, []);
+  return mergeWithSeeds(stored);
 }
 
 // 保存全部广场作品

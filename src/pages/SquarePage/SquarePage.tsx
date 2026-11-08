@@ -57,9 +57,9 @@ export default function SquarePage() {
       );
     }
 
-    // 分类筛选
+    // 分类筛选（分类标签存在 tags 数组中）
     if (activeTag !== 'all') {
-      result = result.filter((w) => (w as any).category === activeTag);
+      result = result.filter((w) => w.tags.includes(activeTag));
     }
 
     // 价格筛选
