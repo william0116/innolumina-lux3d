@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+/* 字体走系统栈回退（Noto Serif SC / Playfair Display 未安装时回退到苹方/微软雅黑/Georgia），
+   不引外部 Google Fonts，避免离线/内网容器（如 ModelScope）出网被重置导致渲染阻塞。 */
 @import "tailwindcss";
 @import "@lark-apaas/client-toolkit-lite/styles.css";
 @import "tw-animate-css";
