@@ -195,7 +195,9 @@ export function addRechargeRecord(r: IRechargeRecord) {
 
 // ===== Init Flag =====
 export function isInitialized(): boolean {
-  return scopedStorage.getItem(KEY_INIT_FLAG) === '1';
+  // markInitialized 经 safeSet 写入的是 JSON 字符串 "\"1\""，需用 safeGet 解析后比较；
+  // 同时兼容早期直接写入的裸值 '1'
+  return safeGet<string | number | null>(KEY_INIT_FLAG, null) == '1' || scopedStorage.getItem(KEY_INIT_FLAG) === '1';
 }
 
 export function markInitialized() {
