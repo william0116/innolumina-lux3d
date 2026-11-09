@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Filter,
@@ -204,16 +204,19 @@ export default function SquarePage() {
           />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+            <AnimatePresence mode="popLayout">
             {filteredWorks.map((work, i) => (
               <motion.div
                 key={work.id}
+                layout
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.3), ease: [0.16, 1, 0.3, 1] }}
               >
                 <Card
-                  className="group cursor-pointer glass-card glass-edge-glow glass-bottom-glow overflow-hidden relative"
+                  className="group cursor-pointer glass-card glass-edge-glow glass-bottom-glow overflow-hidden relative transition-all duration-300 hover:border-primary/25 hover:shadow-lg hover:shadow-primary/8 hover:-translate-y-1"
                   onClick={() => setDetailWork(work)}
                 >
                   {/* 作品图 */}
@@ -233,12 +236,17 @@ export default function SquarePage() {
                         className="!size-8 rounded-full glass-card"
                         onClick={(e) => handleLike(e, work.id)}
                       >
-                        <Heart
-                          className={cn(
-                            'size-4',
-                            liked[work.id] ? 'fill-destructive text-destructive' : ''
-                          )}
-                        />
+                        <motion.div
+                          animate={liked[work.id] ? { scale: [1, 1.4, 0.9, 1.1, 1] } : { scale: 1 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          <Heart
+                            className={cn(
+                              'size-4 transition-colors',
+                              liked[work.id] ? 'fill-destructive text-destructive' : ''
+                            )}
+                          />
+                        </motion.div>
                       </Button>
                       <Button
                         size="icon"
@@ -316,6 +324,7 @@ export default function SquarePage() {
                 </Card>
               </motion.div>
             ))}
+            </AnimatePresence>
           </div>
         )}
       </div>
