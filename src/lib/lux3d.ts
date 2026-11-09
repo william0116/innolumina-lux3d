@@ -90,8 +90,14 @@ export async function getTaskStatus(taskId: number): Promise<Lux3DTaskResult> {
 /**
  * 等待任务完成
  */
-export async function waitForTask(taskId: number, onProgress?: (status: number) => void): Promise<Lux3DTaskResult> {
+export async function waitForTask(
+  taskId: number,
+  onProgress?: (status: number) => void,
+  timeoutMs = 10 * 60 * 1000,
+): Promise<Lux3DTaskResult> {
+  const deadline = Date.now() + timeoutMs;
   while (true) {
+    if (Date.now() > deadline) throw new Error('3D 模型生成超时，请稍后重试');
     const result = await getTaskStatus(taskId);
     onProgress?.(result.status);
     if (result.status === 3) return result;
@@ -133,5 +139,6 @@ export async function downloadAsset(assetUrl: string, fileName: string): Promise
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(blobUrl);
+  // 立即 revoke 会让部分浏览器（Safari/Firefox）下载失败，延迟释放
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 30_000);
 }
