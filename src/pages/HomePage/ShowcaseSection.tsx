@@ -97,7 +97,7 @@ export default function ShowcaseSection() {
               作品展示
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 font-['Noto_Serif_SC'] tracking-[0.08em]">
-              inno.Studio琉璃臻品
+              inno.Studio 琉璃臻品
             </h2>
             <p className="text-muted-foreground max-w-xl leading-[1.8]">
               母品牌 inno.Studio 真实作品与空间落地案例，每一件琉璃器物都凝结东方意韵与匠艺温度

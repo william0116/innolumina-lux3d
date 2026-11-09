@@ -1,27 +1,23 @@
 import { useNavigate } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import GlassParticles from '@/components/GlassParticles';
 import { HERO_PRODUCT_IMAGE } from '@/data/showcase';
 
-/** 数字跳动计数 hook */
+/** 数字跳动计数 hook — KPI 在首屏，挂载后直接启动 */
 function useCounter(target: number, duration = 1400, startDelay = 0) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
 
   useEffect(() => {
-    if (!inView) return;
     let frameId: number;
     const timer = setTimeout(() => {
       let startTime: number | null = null;
       const animate = (now: number) => {
         if (!startTime) startTime = now;
         const progress = Math.min((now - startTime) / duration, 1);
-        // ease-out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
         setCount(Math.round(eased * target));
         if (progress < 1) frameId = requestAnimationFrame(animate);
@@ -29,9 +25,10 @@ function useCounter(target: number, duration = 1400, startDelay = 0) {
       frameId = requestAnimationFrame(animate);
     }, startDelay);
     return () => { clearTimeout(timer); cancelAnimationFrame(frameId); };
-  }, [inView, target, duration, startDelay]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return { count, ref };
+  return count;
 }
 
 /** 文字区块交错入场 variants */
@@ -124,23 +121,23 @@ export default function HeroSection() {
 
             {/* KPI 数字计数 */}
             <motion.div variants={itemVariants} className="flex items-center gap-5 sm:gap-10 text-sm text-muted-foreground">
-              <div ref={c1.ref}>
+              <div>
                 <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">
-                  {c1.count}+
+                  {c1}+
                 </div>
                 <div className="text-xs mt-1.5 tracking-widest">创作者入驻</div>
               </div>
               <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <div ref={c2.ref}>
+              <div>
                 <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">
-                  {c2.count.toLocaleString()}+
+                  {c2.toLocaleString()}+
                 </div>
                 <div className="text-xs mt-1.5 tracking-widest">AI 生成作品</div>
               </div>
               <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <div ref={c3.ref}>
+              <div>
                 <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">
-                  {c3.count}%
+                  {c3}%
                 </div>
                 <div className="text-xs mt-1.5 tracking-widest">工艺通过率</div>
               </div>
