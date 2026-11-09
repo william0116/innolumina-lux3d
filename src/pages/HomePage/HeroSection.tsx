@@ -25,7 +25,6 @@ function useCounter(target: number, duration = 1400, startDelay = 0) {
       frameId = requestAnimationFrame(animate);
     }, startDelay);
     return () => { clearTimeout(timer); cancelAnimationFrame(frameId); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return count;

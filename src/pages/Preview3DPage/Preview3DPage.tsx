@@ -496,6 +496,59 @@ export default function Preview3DPage() {
                   )}
                   {generating3D ? 'AI 生成 3D 模型中...' : uploadedImage ? '用上传图生成3D模型' : '用作品原图生成3D模型'}
                 </Button>
+
+                {/* 生成中：分步进度卡片 */}
+                <AnimatePresence>
+                  {generating3D && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-3 p-4 rounded-xl bg-primary/5 border border-primary/15"
+                    >
+                      {[
+                        '正在提交生成任务...',
+                        '正在生成 3D 网格...',
+                        '正在计算材质贴图...',
+                        '正在优化模型细节...',
+                        '正在加载模型...',
+                      ].map((stage, i) => {
+                        const currentIdx = [
+                          '正在提交生成任务',
+                          '正在生成 3D 网格',
+                          '正在计算材质贴图',
+                          '正在优化模型细节',
+                          '正在加载模型',
+                        ].findIndex(s => generatingStage.startsWith(s));
+                        const isDone = currentIdx > i;
+                        const isActive = currentIdx === i;
+                        return (
+                          <div key={stage} className="flex items-center gap-2.5 py-1.5">
+                            <div className={cn(
+                              'size-4 rounded-full flex items-center justify-center shrink-0 transition-all duration-500',
+                              isDone ? 'bg-success/20' : isActive ? 'bg-primary/20 ring-2 ring-primary/30' : 'bg-muted/60'
+                            )}>
+                              {isDone ? (
+                                <CheckCircle2 className="size-3 text-success" />
+                              ) : isActive ? (
+                                <Loader2 className="size-2.5 text-primary animate-spin" />
+                              ) : (
+                                <div className="size-1.5 rounded-full bg-muted-foreground/30" />
+                              )}
+                            </div>
+                            <span className={cn(
+                              'text-xs transition-colors duration-300',
+                              isDone ? 'text-success' : isActive ? 'text-primary font-medium' : 'text-muted-foreground/50'
+                            )}>
+                              {stage}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </CardContent>
             </Card>
 
@@ -566,11 +619,19 @@ export default function Preview3DPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* 总览卡 */}
             <Card className={cn(
-              'border shadow-sm',
+              'border shadow-sm relative overflow-hidden',
               overallStatus === 'pass' && 'border-success/40',
               overallStatus === 'warning' && 'border-warning/40',
               overallStatus === 'fail' && 'border-destructive/40',
             )}>
+              {/* warning 状态顶部脉冲光条 */}
+              {overallStatus === 'warning' && (
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-0.5 bg-warning/60"
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                />
+              )}
               <CardContent className="p-5">
                 <div className="flex items-center gap-3 mb-4">
                   <div className={cn('size-12 rounded-full flex items-center justify-center', overallClass, 'border')}>
@@ -618,10 +679,21 @@ export default function Preview3DPage() {
               <CardContent className="p-0">
                 <div className="divide-y divide-border">
                   {inspectionItems.map((item, idx) => (
-                    <div key={item.name}>
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.35, delay: idx * 0.07, ease: 'easeOut' }}
+                    >
                       <button
                         onClick={() => toggleItem(idx)}
-                        className="w-full flex items-center gap-3 px-5 py-3.5 hover:bg-muted/30 transition-colors text-left"
+                        className={cn(
+                          'w-full flex items-center gap-3 px-5 py-3.5 hover:bg-muted/30 transition-all text-left relative group',
+                          'border-l-2',
+                          item.status === 'pass' && 'border-l-transparent hover:border-l-success/50',
+                          item.status === 'warning' && 'border-l-warning/40 hover:border-l-warning',
+                          item.status === 'fail' && 'border-l-destructive/40 hover:border-l-destructive',
+                        )}
                       >
                         {statusIcon(item.status)}
                         <div className="flex-1 min-w-0">
@@ -638,7 +710,7 @@ export default function Preview3DPage() {
                         ) : (
                           <ChevronDown className="size-4 text-muted-foreground shrink-0" />
                         )}
-                      </button>
+                </button>
                       <AnimatePresence>
                         {expandedItems[idx] && (
                           <motion.div
@@ -656,7 +728,7 @@ export default function Preview3DPage() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
