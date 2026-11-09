@@ -119,7 +119,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
 
   // 支付订单
   const payOrder = useCallback(async (id: string): Promise<boolean> => {
-    const order = state.orders.find(o => o.id === id);
+    // 以 storage 为准，避免闭包中的 state.orders 尚未包含刚创建的订单
+    const order = getOrderByIdLocal(id);
     if (!order) return false;
 
     await new Promise(r => setTimeout(r, 1500));
@@ -195,8 +196,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     }, 500);
 
     return true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.orders]);
+  }, []);
 
   // 取消订单
   const cancelOrder = useCallback((id: string) => {

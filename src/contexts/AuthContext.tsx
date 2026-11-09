@@ -77,21 +77,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // 多标签页同步
     const onStorage = (e: StorageEvent) => {
-      if (e.key === 'innolumina_user') {
+      if (e.key?.endsWith('innolumina_user')) { // scopedStorage 会给键加平台前缀，按后缀匹配
+        // 不能读闭包里的 state.user（挂载时恒为 null），统一以 storage 为准
         const u = getUserFromStorage();
-        if (!u) {
-          dispatch({ type: 'LOGOUT' });
-        } else if (!state.user || u.id !== state.user.id || u.points !== state.user.points) {
-          dispatch({ type: 'LOGIN', user: u });
-        }
+        dispatch(u ? { type: 'LOGIN', user: u } : { type: 'LOGOUT' });
       }
-      if (e.key === 'innolumina_point_records') {
-        dispatch({ type: 'INIT', user: state.user, records: getPointRecords() });
+      if (e.key?.endsWith('innolumina_point_records')) {
+        dispatch({ type: 'INIT', user: getUserFromStorage(), records: getPointRecords() });
       }
     };
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const login = useCallback((user: IUser) => {
