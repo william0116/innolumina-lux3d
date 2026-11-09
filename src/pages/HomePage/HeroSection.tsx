@@ -80,19 +80,19 @@ export default function HeroSection() {
             </div>
 
             {/* KPI 数据 */}
-            <div className="flex items-center gap-10 text-sm text-muted-foreground">
+            <div className="flex items-center gap-5 sm:gap-10 text-sm text-muted-foreground">
               <div>
-                <div className="text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">500+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">500+</div>
                 <div className="text-xs mt-1.5 tracking-widest">创作者入驻</div>
               </div>
               <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
               <div>
-                <div className="text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">3000+</div>
+                <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">3000+</div>
                 <div className="text-xs mt-1.5 tracking-widest">AI 生成作品</div>
               </div>
               <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
               <div>
-                <div className="text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">98%</div>
+                <div className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums glass-num-glow font-['Noto_Serif_SC'] tracking-wider">98%</div>
                 <div className="text-xs mt-1.5 tracking-widest">工艺通过率</div>
               </div>
             </div>

@@ -26,7 +26,7 @@ export default function ShowcaseSection() {
   }, [activeSeries]);
 
   return (
-    <section id="showcase" className="w-full py-20 md:py-28 relative">
+    <section id="showcase" className="w-full py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-30">
         <div className="absolute top-0 right-1/4 w-[500px] h-[400px] bg-accent/8 rounded-full blur-[140px]" />
       </div>

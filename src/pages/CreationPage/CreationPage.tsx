@@ -857,11 +857,13 @@ export default function CreationPage() {
                                </div>
                              </div>
                             ) : (
-                             <button
-                               type="button"
+                             <div
+                               role="button"
+                               tabIndex={0}
                                onClick={() => handleSelect(i)}
+                               onKeyDown={(e) => { if (e.target !== e.currentTarget) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleSelect(i); } }}
                                className={cn(
-                                 'relative w-full aspect-square overflow-hidden rounded-lg transition-all duration-300 text-left',
+                                 'relative w-full aspect-square cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 overflow-hidden rounded-lg transition-all duration-300 text-left',
                                  selectedIndex === i
                                    ? 'ring-2 ring-[#C4A96B] ring-offset-2 ring-offset-white shadow-lg scale-[1.02]'
                                    : 'border border-border hover:border-primary/40'
@@ -919,7 +921,7 @@ export default function CreationPage() {
                                    </Button>
                                  </div>
                                </div>
-                             </button>
+                             </div>
                            )}
                         </motion.div>
                       ))}

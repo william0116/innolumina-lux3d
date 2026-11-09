@@ -35,7 +35,7 @@ const CAPABILITIES = [
 
 export default function CapabilitiesSection() {
   return (
-    <section id="capabilities" className="w-full py-20 md:py-28 relative">
+    <section id="capabilities" className="w-full py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-50">
         <div className="absolute top-1/3 left-0 w-[400px] h-[300px] bg-accent/8 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-0 w-[500px] h-[350px] bg-primary/5 rounded-full blur-[130px]" />

@@ -188,15 +188,14 @@ export default function OrderPage() {
     [selectedType]
   );
 
-  const totalPrice = useMemo(() => {
+  // 单价：广场作品按作品基础价（树脂母模为 0.6 倍），否则按制造方式标价
+  const unitPrice = useMemo(() => {
     if (selectedType === 'stl') return 0;
-    const base = squareWork ? squareWork.basePrice : selectedOption.price;
-    // 树脂母模是基础价的 0.6 倍
-    if (selectedType === 'resin' && squareWork) {
-      return Math.round(squareWork.basePrice * 0.6) * quantity;
-    }
-    return base * quantity;
-  }, [selectedType, selectedOption.price, quantity, squareWork]);
+    if (!squareWork) return selectedOption.price;
+    return selectedType === 'resin' ? Math.round(squareWork.basePrice * 0.6) : squareWork.basePrice;
+  }, [selectedType, selectedOption.price, squareWork]);
+
+  const totalPrice = unitPrice * quantity;
 
   const handleSubmit = async () => {
     if (!work || !user) return;
@@ -230,7 +229,7 @@ endsolid ${work.id}_model`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        setTimeout(() => URL.revokeObjectURL(url), 30_000);
         toast.success('STL 模型已开始下载');
         setSubmitting(false);
         return;
@@ -243,7 +242,7 @@ endsolid ${work.id}_model`;
         productType: selectedType,
         productName: selectedOption.title,
         quantity,
-        price: selectedOption.price,
+        price: unitPrice,
         totalPrice,
         receiver: { ...receiver },
         remark,
