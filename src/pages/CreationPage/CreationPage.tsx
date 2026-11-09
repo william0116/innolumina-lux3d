@@ -559,10 +559,15 @@ export default function CreationPage() {
                       className="space-y-4"
                     >
                        <div className="space-y-2">
-                         <label className="text-xs text-muted-foreground font-medium tracking-wide">创意描述</label>
-                         <Textarea
+                         <div className="flex items-center justify-between">
+                           <label className="text-xs text-muted-foreground font-medium tracking-wide">创意描述</label>
+                           <span className={cn('text-[10px] tabular-nums', prompt.length > 180 ? 'text-warning' : 'text-muted-foreground/50')}>
+                             {prompt.length}/200
+                           </span>
+                         </div>
+                <Textarea
                            value={prompt}
-                           onChange={(e) => setPrompt(e.target.value)}
+                           onChange={(e) => setPrompt(e.target.value.slice(0, 200))}
                            placeholder="描述你想要的琉璃器物，例如：一盏东方山水意象的琉璃台灯，通透青绿色调，山峦层叠造型"
                            className="min-h-[140px] resize-none bg-white border-border text-sm focus-visible:ring-accent/40 focus-visible:border-accent/60 rounded-lg"
                          />
@@ -754,26 +759,28 @@ export default function CreationPage() {
                   )}
                 </AnimatePresence>
 
-                <Button
-                  onClick={handleGenerate}
-                  disabled={
-                    generating ||
-                    (mode === 'text' ? !prompt.trim() : !referencePreview)
-                  }
-                  className="w-full h-11 gap-2 glass-btn-primary font-medium rounded-lg"
-                >
-                  {generating ? (
-                    <>
-                      <Loader2 className="size-4 animate-spin glass-loader-ring" />
-                      生成中...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="size-4" />
-                      生成效果图（消耗 {cost} 积分）
-                    </>
-                  )}
-                </Button>
+                <motion.div whileTap={{ scale: 0.97 }}>
+                  <Button
+                    onClick={handleGenerate}
+                    disabled={
+                      generating ||
+                      (mode === 'text' ? !prompt.trim() : !referencePreview)
+                    }
+                    className="w-full h-11 gap-2 glass-btn-primary font-medium rounded-lg"
+                  >
+                    {generating ? (
+                      <>
+                        <Loader2 className="size-4 animate-spin glass-loader-ring" />
+                        生成中...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="size-4" />
+                        生成效果图（消耗 {cost} 积分）
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
 
                 <p className="text-xs text-muted-foreground text-center">
                   每次生成 4 张不同方案，可选择心仪作品转 3D 模型
@@ -822,9 +829,14 @@ export default function CreationPage() {
                     <div className="absolute inset-0 -z-10">
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[100px] opacity-50" />
                     </div>
-                    <div className="size-16 rounded-full bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mb-4">
+                    {/* 呼吸光晕 */}
+                    <motion.div
+                      className="size-16 rounded-full bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mb-4"
+                      animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
+                      transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+                    >
                       <Sparkles className="size-8 text-primary/70" />
-                    </div>
+                    </motion.div>
                     <p className="text-muted-foreground mb-1">
                       {mode === 'text' ? '输入你的创意描述' : '上传参考图开始创作'}
                     </p>
