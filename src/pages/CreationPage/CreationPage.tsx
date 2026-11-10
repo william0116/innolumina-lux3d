@@ -825,7 +825,7 @@ export default function CreationPage() {
                 )}
 
                 {currentImages.length === 0 && !generating ? (
-                  <div className="aspect-square flex flex-col items-center justify-center text-center p-8 border border-dashed border-border rounded-xl bg-muted/20 relative overflow-hidden">
+                  <div className="h-[340px] flex flex-col items-center justify-center text-center p-8 border border-dashed border-border rounded-xl bg-muted/20 relative overflow-hidden">
                     <div className="absolute inset-0 -z-10">
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[100px] opacity-50" />
                     </div>

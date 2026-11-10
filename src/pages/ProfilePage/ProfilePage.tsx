@@ -288,10 +288,10 @@ export default function ProfilePage() {
                         key={item.key}
                         onClick={() => handleTabChange(item.key)}
                         className={cn(
-                          'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200',
+                          'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 border-l-2',
                           isActive
-                            ? 'bg-primary/10 text-primary font-medium'
-                            : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+                            ? 'bg-primary/10 text-primary font-medium border-l-primary'
+                            : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground border-l-transparent'
                         )}
                       >
                         <Icon className="size-4 shrink-0" />

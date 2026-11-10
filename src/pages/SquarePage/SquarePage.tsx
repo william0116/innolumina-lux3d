@@ -116,7 +116,7 @@ export default function SquarePage() {
   };
 
   return (
-    <div className="min-h-screen py-12 md:py-16">
+    <div className="min-h-screen py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* 页头 */}
         <div className="text-center mb-10">
