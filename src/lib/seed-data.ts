@@ -17,14 +17,14 @@ import type { IWork } from '@/data/glassmorphism';
 import { avatarImages } from '@lark-apaas/client-toolkit-lite';
 
 // inno.Studio 真实产品图
-const INNO_WALLEDORF = 'images/products/waldorf.jpg';
-const INNO_AMBER_BOX = 'images/products/inno-amber-wei.jpg';
-const INNO_CELADON_BOX = 'images/products/celadon-bagua.jpg';
-const INNO_BEGONIA = 'images/products/begonia-incense.jpg';
-const INNO_GREEN_SET = 'images/products/green-set.jpg';
-const INNO_EXHIBITION = 'images/products/inno-amber-group.jpg';
-const INNO_ZHUYE = 'images/products/inno-amber-leaf.jpg';
-const INNO_AMBER_CHANG = 'images/products/inno-amber-long.jpg';
+const INNO_WALLEDORF = '/images/products/waldorf.jpg';
+const INNO_AMBER_BOX = '/images/products/inno-amber-wei.jpg';
+const INNO_CELADON_BOX = '/images/products/celadon-bagua.jpg';
+const INNO_BEGONIA = '/images/products/begonia-incense.jpg';
+const INNO_GREEN_SET = '/images/products/green-set.jpg';
+const INNO_EXHIBITION = '/images/products/inno-amber-group.jpg';
+const INNO_ZHUYE = '/images/products/inno-amber-leaf.jpg';
+const INNO_AMBER_CHANG = '/images/products/inno-amber-long.jpg';
 
 const TEST_USER_ID = 'user_test_001';
 

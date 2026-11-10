@@ -246,27 +246,27 @@ export default function CreationPage() {
       // 预设图片库（按风格分类）
       const imagePool = {
         amber: [ // 琥珀色系
-          'images/products/inno-amber-wei.jpg',
-          'images/products/inno-amber-long.jpg',
+          '/images/products/inno-amber-wei.jpg',
+          '/images/products/inno-amber-long.jpg',
         ],
         green: [ // 青绿/翠绿色系
-          'images/products/green-set.jpg',
-          'images/products/green-chang.jpg',
-          'images/products/celadon-bagua.jpg',
+          '/images/products/green-set.jpg',
+          '/images/products/green-chang.jpg',
+          '/images/products/celadon-bagua.jpg',
         ],
         blue: [ // 蓝色系
-          'images/products/blue-tuoyuan.jpg',
-          'images/products/long-incense.jpg',
+          '/images/products/blue-tuoyuan.jpg',
+          '/images/products/long-incense.jpg',
         ],
         bamboo: [ // 竹叶/花卉纹样
-          'images/products/zhuye-bagua.jpg',
-          'images/products/inno-amber-leaf.jpg',
+          '/images/products/zhuye-bagua.jpg',
+          '/images/products/inno-amber-leaf.jpg',
         ],
         default: [ // 默认
-          'images/products/inno-amber-cylinder.jpg',
-          'images/products/inno-amber-group.jpg',
-          'images/products/begonia-incense.jpg',
-          'images/products/waldorf.jpg',
+          '/images/products/inno-amber-cylinder.jpg',
+          '/images/products/inno-amber-group.jpg',
+          '/images/products/begonia-incense.jpg',
+          '/images/products/waldorf.jpg',
         ],
       };
 

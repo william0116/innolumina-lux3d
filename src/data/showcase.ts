@@ -10,20 +10,20 @@ export interface IShowcase {
 
 // inno.Studio 真实产品图（小红书官方账号）— 11 张按系列分类
 // 四时物候·琉璃匣系列（琥珀系为 inno.studio 真实产品图）
-const INNO_AMBER_WEIJIAO = 'images/products/inno-amber-wei.jpg'    // 1. 委角匣·琥珀色（实拍）
-const INNO_CELADON_BAGUA = 'images/products/celadon-bagua.jpg'    // 2. 八角匣·淡青色四宫格
-const INNO_GREEN_SET = 'images/products/green-set.jpg'             // 3. 绿色系合集（小匣/茶则/杯托）
-const INNO_BLUE_TUOYUAN = 'images/products/blue-tuoyuan.jpg'       // 4. 椭圆匣·淡蓝色磨砂
-const INNO_ZHUYE_BAGUA = 'images/products/inno-amber-leaf.jpg'     // 5. 八角匣·竹叶浮雕（Hero 首选，实拍）
-const INNO_AMBER_CHANG = 'images/products/inno-amber-long.jpg'     // 6. 长匣·琥珀色海棠形（实拍）
-const INNO_GREEN_CHANG = 'images/products/green-chang.jpg'          // 7. 长匣·翠绿色海棠形
+const INNO_AMBER_WEIJIAO = '/images/products/inno-amber-wei.jpg'    // 1. 委角匣·琥珀色（实拍）
+const INNO_CELADON_BAGUA = '/images/products/celadon-bagua.jpg'    // 2. 八角匣·淡青色四宫格
+const INNO_GREEN_SET = '/images/products/green-set.jpg'             // 3. 绿色系合集（小匣/茶则/杯托）
+const INNO_BLUE_TUOYUAN = '/images/products/blue-tuoyuan.jpg'       // 4. 椭圆匣·淡蓝色磨砂
+const INNO_ZHUYE_BAGUA = '/images/products/inno-amber-leaf.jpg'     // 5. 八角匣·竹叶浮雕（Hero 首选，实拍）
+const INNO_AMBER_CHANG = '/images/products/inno-amber-long.jpg'     // 6. 长匣·琥珀色海棠形（实拍）
+const INNO_GREEN_CHANG = '/images/products/green-chang.jpg'          // 7. 长匣·翠绿色海棠形
 // 香器花器系列
-const INNO_BEGONIA_INCENSE = 'images/products/begonia-incense.jpg' // 8. 海棠形香插·透明大理石纹
-const INNO_LONG_INCENSE = 'images/products/long-incense.jpg'      // 9. 长形香插·淡蓝渐变
+const INNO_BEGONIA_INCENSE = '/images/products/begonia-incense.jpg' // 8. 海棠形香插·透明大理石纹
+const INNO_LONG_INCENSE = '/images/products/long-incense.jpg'      // 9. 长形香插·淡蓝渐变
 // 艺术家具系列
-const INNO_WALDORF = 'images/products/waldorf.jpg'                 // 10. 穹宇·拂光柜（拱形透光柜）
+const INNO_WALDORF = '/images/products/waldorf.jpg'                 // 10. 穹宇·拂光柜（拱形透光柜）
 // 展览场景
-const INNO_EXHIBITION = 'images/products/inno-amber-group.jpg'     // 11. 四时物候系列陈列（实拍）
+const INNO_EXHIBITION = '/images/products/inno-amber-group.jpg'     // 11. 四时物候系列陈列（实拍）
 
 export const HERO_IMAGE_URL = INNO_WALDORF
 export const HERO_PRODUCT_IMAGE = INNO_ZHUYE_BAGUA  // Hero 产品特写：竹叶浮雕八角匣
