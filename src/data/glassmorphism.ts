@@ -54,12 +54,12 @@ export interface IOrder {
 }
 
 // inno.Studio 真实产品图（小红书官方账号）
-const INNO_WALLEDORF = 'images/products/amber-open.jpg'
-const INNO_AMBER_BOX = 'images/products/amber-box.jpg'
-const INNO_CELADON_BOX = 'images/products/amber-open.jpg'
-const INNO_BEGONIA = 'images/products/amber-open.jpg'
-const INNO_GREEN_SET = 'images/products/amber-open.jpg'
-const INNO_EXHIBITION = 'images/products/amber-open.jpg'
+const INNO_WALLEDORF = 'images/products/waldorf.jpg'
+const INNO_AMBER_BOX = 'images/products/inno-amber-wei.jpg'
+const INNO_CELADON_BOX = 'images/products/celadon-bagua.jpg'
+const INNO_BEGONIA = 'images/products/begonia-incense.jpg'
+const INNO_GREEN_SET = 'images/products/green-set.jpg'
+const INNO_EXHIBITION = 'images/products/inno-amber-group.jpg'
 
 export const MOCK_WORKS: IWork[] = [
   {
@@ -208,7 +208,7 @@ export const MOCK_ORDERS: IOrder[] = [
   {
     id: 'ORD20260915001',
     workId: 'work-zhuye',
-    workImage: 'images/products/amber-box.jpg',
+    workImage: 'images/products/inno-amber-wei.jpg',
     productType: 'glass',
     productName: '脱蜡铸造琉璃成品 - 四时物候·竹叶八角匣',
     quantity: 1,
@@ -222,7 +222,7 @@ export const MOCK_ORDERS: IOrder[] = [
   {
     id: 'ORD20260914002',
     workId: 'work-begonia',
-    workImage: 'images/products/amber-open.jpg',
+    workImage: 'images/products/celadon-bagua.jpg',
     productType: 'resin',
     productName: '3D打印树脂母模 - 海棠形琉璃香插',
     quantity: 2,
@@ -236,7 +236,7 @@ export const MOCK_ORDERS: IOrder[] = [
   {
     id: 'ORD20260912003',
     workId: 'work-blue',
-    workImage: 'images/products/amber-box.jpg',
+    workImage: 'images/products/inno-amber-wei.jpg',
     productType: 'stl',
     productName: 'STL模型下载 - 椭圆磨砂蓝琉璃匣',
     quantity: 1,
@@ -250,7 +250,7 @@ export const MOCK_ORDERS: IOrder[] = [
   {
     id: 'ORD20260916004',
     workId: 'work-amber-chang',
-    workImage: 'images/products/amber-box.jpg',
+    workImage: 'images/products/inno-amber-wei.jpg',
     productType: 'glass',
     productName: '脱蜡铸造琉璃成品 - 琥珀色海棠长匣',
     quantity: 1,

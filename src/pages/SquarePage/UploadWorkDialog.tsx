@@ -72,10 +72,10 @@ export default function UploadWorkDialog({ open, onOpenChange, onSuccess }: Uplo
   const handleImageUpload = () => {
     // 模拟上传 - 使用 inno.Studio 真实产品图作为占位
     const placeholders = [
-      'images/products/amber-box.jpg',
-      'images/products/amber-open.jpg',
-      'images/products/amber-open.jpg',
-      'images/products/amber-box.jpg',
+      'images/products/inno-amber-wei.jpg',
+      'images/products/celadon-bagua.jpg',
+      'images/products/begonia-incense.jpg',
+      'images/products/waldorf.jpg',
     ];
     if (images.length < 6) {
       const nextImg = placeholders[images.length % placeholders.length];
