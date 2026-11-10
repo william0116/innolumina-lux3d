@@ -56,7 +56,7 @@ export default function HeroSection() {
         <GlassParticles />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-20 md:pt-28 pb-24 md:pb-32">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-12 md:pt-16 pb-20 md:pb-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* 左侧文字 — 交错入场 */}
@@ -118,6 +118,18 @@ export default function HeroSection() {
               </Button>
             </motion.div>
 
+            {/* 移动端产品图 —仅在lg 以下显示，插在按钮和 KPI 之间 */}
+            <motion.div
+              variants={itemVariants}
+              className="block lg:hidden mb-8 rounded-2xl overflow-hidden shadow-xl shadow-primary/8 border border-border/60"
+            >
+              <Image
+                src={HERO_PRODUCT_IMAGE}
+                alt="四时物候·青绿八角琉璃匣"
+                className="w-full aspect-video object-cover"
+              />
+            </motion.div>
+
             {/* KPI 数字计数 */}
             <motion.div variants={itemVariants} className="flex items-center gap-5 sm:gap-10 text-sm text-muted-foreground">
               <div>
@@ -164,7 +176,7 @@ export default function HeroSection() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-border/60">
                 <Image
                   src={HERO_PRODUCT_IMAGE}
-                  alt="四时物候·竹叶浮雕八角琉璃匣"
+                alt="四时物候·青绿八角琉璃匣"
                   className="w-full aspect-square object-cover"
                 />
                 {/* 琉璃青光晕叠层 */}

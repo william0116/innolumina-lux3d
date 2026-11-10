@@ -26,7 +26,7 @@ const INNO_WALDORF = '/images/products/waldorf.jpg'                 // 10. 穹�
 const INNO_EXHIBITION = '/images/products/inno-amber-group.jpg'     // 11. 四时物候系列陈列（实拍）
 
 export const HERO_IMAGE_URL = INNO_WALDORF
-export const HERO_PRODUCT_IMAGE = INNO_ZHUYE_BAGUA  // Hero 产品特写：竹叶浮雕八角匣
+export const HERO_PRODUCT_IMAGE = INNO_CELADON_BAGUA  // Hero产品特写：青绿八角琉璃匣
 
 export const INNO_REAL_IMAGES = {
   // 四时物候·琉璃匣系列
