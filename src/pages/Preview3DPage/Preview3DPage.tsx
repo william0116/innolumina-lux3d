@@ -486,8 +486,7 @@ export default function Preview3DPage() {
                 <Button
                   onClick={handleRegenerate3D}
                   disabled={generating3D}
-                  className="w-full gap-2 rounded-xl h-11 text-sm font-medium shadow-md hover:shadow-lg transition-all"
-                  style={{ background: '#2C3E3A' }}
+                  className="w-full gap-2 rounded-xl h-11 text-sm font-medium glass-btn-primary"
                 >
                   {generating3D ? (
                     <Loader2 className="size-4 animate-spin" />
@@ -737,8 +736,7 @@ export default function Preview3DPage() {
             {/* 下单主按钮 */}
             <Button
               size="lg"
-              className="w-full h-12 gap-2 rounded-lg text-base font-medium"
-              style={{ background: '#2C3E3A' }}
+              className="w-full h-12 gap-2 rounded-lg text-base font-medium glass-btn-primary"
               onClick={() => handleOrder('glass')}
             >
               <Package className="size-4" />

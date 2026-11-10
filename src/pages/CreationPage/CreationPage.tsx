@@ -1127,8 +1127,7 @@ export default function CreationPage() {
                 <Button
                   onClick={handleTo3D}
                   disabled={convertingTo3D}
-                  className="gap-1.5 h-10 text-white"
-                  style={{ background: '#2C3E3A' }}
+                  className="gap-1.5 h-10 glass-btn-primary"
                 >
                   {convertingTo3D ? (
                     <Loader2 className="size-4 animate-spin" />
@@ -1226,8 +1225,7 @@ export default function CreationPage() {
             <Button
               onClick={handlePublish}
               disabled={publishing || !publishTitle.trim()}
-              className="rounded-lg gap-1.5"
-              style={{ background: '#2C3E3A' }}
+              className="rounded-lg gap-1.5 glass-btn-primary"
             >
               {publishing ? <Loader2 className="size-4 animate-spin" /> : <Share2 className="size-4" />}
               {publishing ? '发布中...' : '提交发布'}
