@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Sparkles, Box, ShieldCheck, Factory } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const CAPABILITIES = [
   {
     icon: Sparkles,
-    title:'AI 文生创作',
+    title: 'AI 文生创作',
     desc: '输入文字描述，AI 自动生成高质量琉璃器物效果图，支持多种风格预设，激发创意灵感。',
     accent: 'from-primary/15 to-primary/5',
     iconColor: 'text-primary',
     glow: 'group-hover:shadow-primary/15',
+    to: '/create',
   },
   {
     icon: Box,
@@ -18,6 +20,7 @@ const CAPABILITIES = [
     accent: 'from-accent/15 to-accent/5',
     iconColor: 'text-accent',
     glow: 'group-hover:shadow-accent/15',
+    to: '/create',
   },
   {
     icon: ShieldCheck,
@@ -26,6 +29,7 @@ const CAPABILITIES = [
     accent: 'from-warning/15 to-warning/5',
     iconColor: 'text-warning',
     glow: 'group-hover:shadow-warning/15',
+    to: '/gallery',
   },
   {
     icon: Factory,
@@ -34,6 +38,7 @@ const CAPABILITIES = [
     accent: 'from-info/15 to-info/5',
     iconColor: 'text-info',
     glow: 'group-hover:shadow-info/15',
+    to: '/square',
   },
 ];
 
@@ -47,6 +52,7 @@ const iconBounce = {
 };
 
 export default function CapabilitiesSection() {
+  const navigate = useNavigate();
   return (
     <section id="capabilities" className="w-full py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 opacity-50">
@@ -55,7 +61,7 @@ export default function CapabilitiesSection() {
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7}}
@@ -78,13 +84,16 @@ export default function CapabilitiesSection() {
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
-                <Card className={`h-full bg-white overflow-hidden group relative border-border transition-all duration-300 hover:border-primary/20 hover:shadow-xl ${item.glow}`}>
+                <Card
+                  onClick={() => navigate(item.to)}
+                  className={`h-full bg-white overflow-hidden group relative border-border transition-all duration-300 hover:border-primary/20 hover:shadow-xl cursor-pointer ${item.glow}`}
+                >
                   {/* hover 时顶部光条 */}
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

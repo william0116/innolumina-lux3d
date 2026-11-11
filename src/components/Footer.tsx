@@ -60,19 +60,17 @@ export default function Footer() {
              <ul className="space-y-3 text-sm text-muted-foreground">
                <li className="flex items-center gap-2">
                  <Mail className="size-4 text-primary/70 shrink-0" />
-                 <UniversalLink to="mailto:willamhe0116@163.com" className="hover:text-primary transition-colors">
-                   willamhe0116@163.com
+                 <UniversalLink to="mailto:hello@innolumina.art" className="hover:text-primary transition-colors">
+                   hello@innolumina.art
                  </UniversalLink>
                </li>
                <li className="flex items-center gap-2">
                  <Phone className="size-4 text-primary/70 shrink-0" />
-                 <UniversalLink to="tel:15501013868" className="hover:text-primary transition-colors tabular-nums">
-                   155-0101-3868
-                 </UniversalLink>
+                 <span className="tabular-nums">400-888-0000</span>
                </li>
                <li className="flex items-start gap-2">
                  <MapPin className="size-4 text-primary/70 shrink-0 mt-0.5" />
-                 <span>上海市徐汇区古宜路 30 号</span>
+                 <span>上海市徐汇区 · Demo 工作室</span>
                </li>
              </ul>
           </div>
@@ -80,10 +78,14 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 glass-divider flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground">
-            © 2025 InnoLumina Studio. All rights reserved. 沪 ICP 备 2025XXXXXX 号
+            © 2026 InnoLumina Studio. All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground">
-            inno.Studio 旗下品牌
+          <p className="text-xs text-muted-foreground flex items-center gap-2">
+            <span>inno.Studio 旗下品牌</span>
+            <span className="text-[#8a7a60]">·</span>
+            <span className="inline-flex items-center gap-1">
+              3D 引擎由 <span className="text-amber-700 font-medium">Aholo Lux3D</span> 驱动
+            </span>
           </p>
         </div>
       </div>

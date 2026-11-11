@@ -31,6 +31,15 @@ import { cn } from '@/lib/utils';
 import UploadWorkDialog from './UploadWorkDialog';
 import EmptyState from '@/components/EmptyState';
 
+/** 哪些作品有真 Aholo Lux3D 生成的 GLB，用于卡片角标 */
+const HAS_REAL_3D = new Set([
+  'work-amber',
+  'work-celadon',
+  'work-begonia',
+  'work-zhuye',
+  'work-green',
+]);
+
 export default function SquarePage() {
   const navigate = useNavigate();
   const [works, setWorks] = useState<ISquareWork[]>(() => getSquareWorks().filter(w => w.isPublic && w.status === 'published'));
@@ -227,6 +236,19 @@ export default function SquarePage() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* 3D 角标（有真 GLB 的作品） */}
+                    {HAS_REAL_3D.has(work.id) && (
+                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded-full bg-amber-500/90 text-black text-[10px] font-bold tracking-wider">
+                        3D
+                      </div>
+                    )}
+                    {/* hover 时提示可看 3D */}
+                    {HAS_REAL_3D.has(work.id) && (
+                      <div className="absolute bottom-3 left-3 px-2 py-1 rounded-md bg-black/60 text-white text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">
+                        点击查看 3D 模型
+                      </div>
+                    )}
 
                     {/* 右上角操作 */}
                     <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

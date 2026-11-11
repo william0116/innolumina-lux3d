@@ -15,25 +15,25 @@ export default function FlowSection() {
   const lineInView = useInView(lineRef, { once: true, margin: '-80px' });
 
   return (
-    <section className="w-full py-16 md:py-20 relative overflow-hidden">
+    <section className="w-full py-10 md:py-16 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 rounded-full blur-[100px]" />
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6}}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-10"
         >
-          <div className="inline-block px-4 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm mb-4 font-medium tracking-wider">
+          <div className="inline-block px-4 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm mb-3 font-medium tracking-wider">
             完整链路
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-['Noto_Serif_SC'] tracking-[0.08em]">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 font-['Noto_Serif_SC'] tracking-[0.08em]">
             五步走完，从灵感到实物
           </h2>
-          <p className="text-muted-foreground leading-[1.8]">
+          <p className="text-muted-foreground leading-[1.8] text-sm">
             完整的创意生产链路，每一步都有AI 与工艺专家护航
           </p>
         </motion.div>
@@ -54,36 +54,38 @@ export default function FlowSection() {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-4 md:grid-flow-col md:auto-rows-auto">
             {STEPS.map((step, i) => {
               const Icon = step.icon;
               return (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center text-center relative"
+                  className="flex md:flex-col items-center md:text-center text-left gap-4 md:gap-0 md:justify-start relative"
                 >
                   <motion.div
                     whileHover={{ scale: 1.08, transition: { duration: 0.2 } }}
-                    className="size-24 rounded-full bg-white border border-border shadow-sm glass-edge-glow flex items-center justify-center mb-4 relative z-10 group cursor-default"
+                    className="shrink-0 size-20 md:size-24 rounded-full bg-white border border-border shadow-sm glass-edge-glow flex items-center justify-center mb-0 md:mb-4 relative z-10 group cursor-default"
                   >
-                    <div className="size-16 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/15 transition-all duration-500">
+                    <div className="size-12 md:size-16 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-accent/15 transition-all duration-500">
                       <motion.div
                         whileHover={{ rotate: [0, -12, 12, 0], transition: { duration: 0.4 } }}
                       >
-                        <Icon className="size-7 text-primary" />
+                        <Icon className="size-6 md:size-7 text-primary" />
                       </motion.div>
                     </div>
                     {/* 步骤号*/}
-                    <div className="absolute -top-1 -right-1 size-6 rounded-full bg-gradient-to-br from-primary to-accent/70 text-primary-foreground text-xs font-bold flex items-center justify-center shadow-md shadow-primary/10">
+                    <div className="absolute -top-1 -right-1 size-5 md:size-6 rounded-full bg-gradient-to-br from-primary to-accent/70 text-primary-foreground text-[10px] md:text-xs font-bold flex items-center justify-center shadow-md shadow-primary/10">
                       {i + 1}
                     </div>
                   </motion.div>
-                  <h3 className="text-foreground font-semibold mb-1.5 font-['Noto_Serif_SC'] tracking-wide">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-[1.7]">{step.desc}</p>
+                  <div className="flex-1 md:flex-none">
+                    <h3 className="text-foreground font-semibold mb-1 font-['Noto_Serif_SC'] tracking-wide">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-[1.7]">{step.desc}</p>
+                  </div>
                 </motion.div>
               );
             })}

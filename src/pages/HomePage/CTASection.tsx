@@ -10,7 +10,7 @@ export default function CTASection() {
     <section className="w-full py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
@@ -42,21 +42,19 @@ export default function CTASection() {
              <Button
                size="lg"
                onClick={() => navigate('/create')}
-               className="h-12 px-8 text-base gap-2 glass-btn-primary font-medium rounded-lg"
+               className="h-14 px-10 text-base gap-2 glass-btn-primary font-semibold rounded-lg shadow-lg shadow-primary/20"
              >
                立即开始创作
-               <ArrowRight className="size-4" />
+               <ArrowRight className="size-5" />
              </Button>
-             <Button
-               size="lg"
-               variant="outline"
+             <button
                onClick={() => {
                  document.getElementById('capabilities')?.scrollIntoView({ behavior: 'smooth' });
                }}
-               className="h-12 px-8 text-base bg-white hover:bg-muted/30 border-border hover:border-primary/30 rounded-lg"
+               className="h-14 px-2 text-sm text-muted-foreground hover:text-foreground hover:underline underline-offset-4"
              >
-               了解更多
-             </Button>
+               了解平台能力 ↓
+             </button>
            </div>
 
            <p className="text-sm text-muted-foreground mt-8">

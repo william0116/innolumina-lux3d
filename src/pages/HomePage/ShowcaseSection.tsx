@@ -28,7 +28,7 @@ function ShowcaseCard({ item, index }: { item: IShowcase; index: number }) {
       transition={{ duration: 0.35, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
       className="group relative rounded-xl overflow-hidden bg-white border border-border shadow-sm hover:shadow-lg hover:shadow-primary/8 hover:border-primary/20 cursor-pointer transition-all duration-300"
-      onClick={() => navigate('/create')}
+      onClick={() => navigate('/square')}
     >
       <div className="aspect-square overflow-hidden relative">
         <Image
@@ -39,18 +39,11 @@ function ShowcaseCard({ item, index }: { item: IShowcase; index: number }) {
         {/* hover渐变遮罩 */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
-        {/* 系列标签 */}
-        <div className="absolute top-2 right-2">
-          <Badge variant="secondary" className="text-[10px] bg-white/90 backdrop-blur-sm text-primary border-0">
-            {item.seriesLabel}
-          </Badge>
-        </div>
-
         {/* hover 时底部 CTA */}
         <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
           <div className="flex items-center gap-1.5 text-white/90 text-xs font-medium">
             <Sparkles className="size-3" />
-            点击开始创作
+            查看作品详情
           </div>
         </div>
       </div>
@@ -86,7 +79,7 @@ export default function ShowcaseSection() {
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -115,7 +108,7 @@ export default function ShowcaseSection() {
 
         {/* 系列 Tab筛选 */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}

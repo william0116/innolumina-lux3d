@@ -10,7 +10,7 @@ const KEY_WORKS = 'innolumina_works';
 const KEY_SQUARE_WORKS = 'innolumina_square_works';
 const KEY_EARNINGS = 'innolumina_earnings';
 const KEY_RECHARGE_RECORDS = 'innolumina_recharge_records';
-const KEY_INIT_FLAG = 'innolumina_initialized';
+const KEY_INIT_FLAG = 'innolumina_initialized_v7';
 
 // ===== Utils =====
 function safeGet<T>(key: string, fallback: T): T {

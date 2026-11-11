@@ -33,6 +33,33 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { textTo3D, waitForTask, imageTo3DByUrl, proxyAssetUrl, downloadAsset } from '@/lib/lux3d';
 
+/** 把本地/相对路径图片读成 base64 DataURL，供 Lux3D API 上传 */
+async function fetchImageAsDataUrl(src: string): Promise<string> {
+  const res = await fetch(src);
+  if (!res.ok) throw new Error(`读取参考图失败: ${res.status}`);
+  const blob = await res.blob();
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      // 压到最长边 1024，控制 payload 大小
+      const maxEdge = 1024;
+      const scale = Math.min(1, maxEdge / Math.max(img.naturalWidth, img.naturalHeight));
+      const w = Math.round(img.naturalWidth * scale);
+      const h = Math.round(img.naturalHeight * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return reject(new Error('画布初始化失败'));
+      ctx.drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = () => reject(new Error('参考图加载失败'));
+    img.src = URL.createObjectURL(blob);
+  });
+}
+
 // 工艺校验项定义
 interface InspectionItem {
   name: string;
@@ -197,7 +224,11 @@ export default function Preview3DPage() {
       if (uploadedImage) {
         imageUrl = uploadedImage;
       } else {
-        imageUrl = work.images[work.selectedIndex] || work.images[0];
+        const src = work.images[work.selectedIndex] || work.images[0];
+        if (!src) throw new Error('没有参考图');
+        // 作品原图是本地相对路径，Lux3D 服务器访问不到，需转成 base64 再发送
+        setGeneratingStage('正在读取作品参考图...');
+        imageUrl = await fetchImageAsDataUrl(src);
       }
       if (!imageUrl) throw new Error('没有参考图');
 
@@ -338,8 +369,11 @@ export default function Preview3DPage() {
               <ArrowLeft className="size-4" />
             </Button>
             <div>
-              <h1 className="text-xl font-bold text-foreground font-['Noto_Serif_SC'] tracking-wider">
+              <h1 className="text-xl font-bold text-foreground font-['Noto_Serif_SC'] tracking-wider flex items-center gap-2">
                 3D 预览与工艺校验
+                <span className="text-[10px] font-normal px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 tracking-wider">
+                  Powered by Aholo Lux3D
+                </span>
               </h1>
               <p className="text-xs text-muted-foreground mt-0.5">
                 实时查看琉璃三维模型，自动检测铸造工艺可行性

@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import AppProviders from "@/components/AppProviders";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import ProtectedLayout from "@/components/ProtectedLayout";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/pages/HomePage/HomePage";
 import CreationPage from "@/pages/CreationPage/CreationPage";
 import SquarePage from "@/pages/SquarePage/SquarePage";
@@ -16,12 +17,14 @@ import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import OrderDetailPage from "@/pages/OrderDetailPage/OrderDetailPage";
 import AdminPage from "@/pages/AdminPage/AdminPage";
+import GalleryPage from "@/pages/GalleryPage/GalleryPage";
 import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
 
 export default function App() {
   return (
     <AppProviders>
-      <Routes>
+      <ErrorBoundary>
+        <Routes>
         {/* 带 chrome 的主布局 */}
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -40,17 +43,21 @@ export default function App() {
           </Route>
         </Route>
 
-        {/* 无 chrome：登录/注册 */}
+        {/* 无 chrome：琉璃光影展厅（独立沉浸体验） */}
+        <Route path="gallery" element={<GalleryPage />} />
+
+         {/* 无 chrome：登录/注册 */}
          <Route path="login" element={<LoginPage />} />
          <Route path="register" element={<RegisterPage />} />
 
-         {/* 无 chrome：管理后台（独立布局） */}
+         {/* 无 chrome：管理后台（独立布局，仅 admin） */}
          <Route path="admin" element={
-           <ProtectedRoute><AdminPage /></ProtectedRoute>
+           <ProtectedRoute requiredRole="admin"><AdminPage /></ProtectedRoute>
          } />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </ErrorBoundary>
     </AppProviders>
   );
 }

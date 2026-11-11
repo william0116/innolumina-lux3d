@@ -46,42 +46,25 @@ Demo阶段已完成，可在本地完整运行和演示。
 
 优先级从高到低：
 
-### 1. 移动端适配确认
-创作页和预览页在手机端只跑了巡检，没有看实际截图。建议：
-```bash
-# 用Playwright 截图
-node -e "
-const {chromium}=require(process.env.HOME+'/.local/lib/node_modules/@playwright/cli/node_modules/playwright');
-(async()=>{
-  const b=await chromium.launch();
-  for(const url of ['/create','/preview/work-amber']){
-    const p=await b.newPage({viewport:{width:390,height:844}});
-    await p.goto('http://localhost:8001'+url,{waitUntil:'networkidle'});
-    await p.waitForTimeout(1500);
-    await p.screenshot({path:'/tmp/mobile'+url.replace(/\//g,'-')+'.png',fullPage:true});
-    await p.close();
-  }
-  await b.close();
-})();"
-```
+### 1. 移动端适配确认 ✅（2026-11-10 完成）
+390×844 iPhone 视口下逐页截图 + 全 12 路由横向溢出巡检：
+- 首页 / 创作页 / 预览页 / 作品广场：布局正常，汉堡菜单、3 列参考图、全宽 CTA、底部固定下单按钮、横向滚动分类条均正常
+- 全 12 路由 `document.scrollWidth - clientWidth = 0`，无横向溢出
+- console 仅有平台探测请求噪音（dev 环境预期）
+- 结论：移动端适配无需改动
 
-### 2. 演示数据补全
-- 广场作品 12 件，分类覆盖不均（灯饰0 件）
-- 订单状态全是"生产中"，不够真实
-- 积分流水时间停在 2026-10 月
+### 2. 演示数据补全 ✅（2026-11-10 完成）
+- 广场作品日期全部从 2024-2025 刷新到 2026-09~2026-11（近 2 个月内）
+- 分类覆盖：新增 square-13「青绿琉璃山子镇纸」(decor 摆件)、square-14「雾蓝琉璃盖置小罐」(other 其他)；现每类 ≥1 件（香插 2、琉璃匣 6、灯饰 2、摆件 2、茶具 1、其他 1）
+- 订单状态：原 4 单已含 completed/producing/shipped/pending，新增 ord_005 已取消（cancelled），共 5 单覆盖 5 种状态
+- 积分流水：本就用相对日期（d(0)~d(20)），自动滚动到近 20 天，无需改
+- 备注：种子数据靠 localStorage flag 初始化，dev 预览前需清 localStorage 才能看到新数据
 
-相关文件：`src/lib/seed-data.ts`（种子数据）、`src/data/square.ts`（广场作品）
-
-### 3. admin 路由鉴权
-任何登录用户都能进 `/admin`，演示时若被人测试会暴露。
-修改位置：`src/app.tsx` 第 46 行的`ProtectedRoute`，加角色判断：
-```tsx
-// 改为
-<Route path="admin" element={
-  <ProtectedRoute requireRole="admin"><AdminPage /></ProtectedRoute>
-} />
-```
-需同步修改 `src/components/ProtectedRoute.tsx` 支持 `requireRole` prop。
+### 3. admin 路由鉴权 ✅（2026-11-10 完成）
+- `ProtectedRoute` 新增 `requiredRole` prop，非 admin 角色访问 `/admin` 直接重定向到 `/`
+- `app.tsx` admin 路由加 `requiredRole="admin"`
+- 测试用户 role 改为 `admin`（demo 时仍能进后台展示）
+- 验证：admin 用户进 /admin 正常显示"管理员"角标；手动改 localStorage role=creator 后访问 /admin 被踢回首页
 
 ---
 
