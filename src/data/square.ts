@@ -1,6 +1,7 @@
 // EXPORTS: ISquareWork, ICreator, ISquareUploadForm, MOCK_SQUARE_WORKS, MOCK_CREATORS, STYLE_TAGS, PRICE_RANGES, SORT_OPTIONS, ROYALTY_OPTIONS
 import { avatarImages } from '@lark-apaas/client-toolkit-lite';
 import { INNO_REAL_IMAGES } from './showcase';
+import { assetUrl } from '@/lib/asset';
 
 export interface ICreator {
   id: string;
@@ -439,25 +440,25 @@ export const MOCK_SQUARE_WORKS: ISquareWork[] = [
   },
   // ===== inno.Studio 小红书真实作品（去重后补入，2026-11）=====
   ...[
-    { id: 'square-xhs-1', title: '天青色琉璃匣', desc: '不浓不淡，刚好是天青色的样子', img: '/images/products/from-xhs/6acf07b0000000001403863a.jpg', likes: 286, date: '2026-11-01' },
-    { id: 'square-xhs-2', title: '十月闻香琉璃器', desc: '十月，闻香而动', img: '/images/products/from-xhs/6ac875210000000018012ad0.jpg', likes: 193, date: '2026-10-30' },
-    { id: 'square-xhs-3', title: '雨后双鸢八角匣', desc: '四时物候 · 雨后双鸢', img: '/images/products/from-xhs/6ac32c15000000001303d572.jpg', likes: 342, date: '2026-10-26' },
-    { id: 'square-xhs-4', title: '海船琉璃摆件', desc: '是大海，是船只', img: '/images/products/from-xhs/6ac0851e000000000b007f2c.jpg', likes: 267, date: '2026-10-24' },
-    { id: 'square-xhs-5', title: '秋日翻页琉璃册', desc: '翻页见秋', img: '/images/products/from-xhs/6abb3cf7000000000b00410c.jpg', likes: 415, date: '2026-10-20' },
-    { id: 'square-xhs-6', title: '匣中藏月', desc: '匣中藏月，月影流转', img: '/images/products/from-xhs/6ab3aa25000000000b005c1e.jpg', likes: 528, date: '2026-10-18' },
-    { id: 'square-xhs-7', title: '天青上新', desc: 'inno Product · 天青系列', img: '/images/products/from-xhs/6aaa6ca300000000110353d8.jpg', likes: 612, date: '2026-10-15' },
-    { id: 'square-xhs-8', title: '夏末可爱小器', desc: '夏末一点可爱', img: '/images/products/from-xhs/6aa29c62000000002502dfc9.jpg', likes: 178, date: '2026-10-12' },
-    { id: 'square-xhs-9', title: '装得下一点光', desc: '装得下一点光的琉璃匣', img: '/images/products/from-xhs/6a9e91b1000000002502ec4c.jpg', likes: 234, date: '2026-10-10' },
-    { id: 'square-xhs-10', title: '于微时见天地', desc: '于微时见天地', img: '/images/products/from-xhs/6a9aa5ee000000001001c8af.jpg', likes: 295, date: '2026-10-08' },
-    { id: 'square-xhs-11', title: '夏日遇见纪念', desc: '谢谢这一夏的遇见', img: '/images/products/from-xhs/6a98de400000000011037894.jpg', likes: 166, date: '2026-10-06' },
-    { id: 'square-xhs-12', title: '晴光湖光委角托盘', desc: '四时物候 · 晴光湖光', img: '/images/products/from-xhs/6a901e4300000000210331db.jpg', likes: 389, date: '2026-10-04' },
-    { id: 'square-xhs-13', title: '湖面接住', desc: '湖面接住了光', img: '/images/products/from-xhs/6a8c23ca0000000018018a38.jpg', likes: 241, date: '2026-10-02' },
-    { id: 'square-xhs-14', title: '秋寂莲香委角匣', desc: '四时物候 · 秋寂莲香', img: '/images/products/from-xhs/6a86ef2d0000000017008f49.jpg', likes: 312, date: '2026-09-28' },
-    { id: 'square-xhs-15', title: '天青兰八角匣', desc: '四时物候 · 天青兰', img: '/images/products/from-xhs/6a843c290000000006007f09.jpg', likes: 278, date: '2026-09-26' },
-    { id: 'square-xhs-16', title: '夏莲叶委角匣', desc: '四时物候 · 夏莲叶', img: '/images/products/from-xhs/6a82e96e0000000006006e92.jpg', likes: 198, date: '2026-09-22' },
-    { id: 'square-xhs-17', title: '白露桂花海棠匣', desc: '四时物候 · 白露桂花', img: '/images/products/from-xhs/6a7edbd1000000002402ebf3.jpg', likes: 356, date: '2026-09-18' },
-    { id: 'square-xhs-18', title: '天青桂花海棠匣', desc: '四时物候 · 天青桂花', img: '/images/products/from-xhs/6a7c5c210000000008010f42.jpg', likes: 289, date: '2026-09-15' },
-    { id: 'square-xhs-19', title: '黄昏凌霄八角匣', desc: '四时物候 · 黄昏凌霄', img: '/images/products/from-xhs/6a79b694000000002403c200.jpg', likes: 245, date: '2026-09-12' },
+    { id: 'square-xhs-1', title: '天青色琉璃匣', desc: '不浓不淡，刚好是天青色的样子', img: assetUrl(assetUrl('/images/products/from-xhs/6acf07b0000000001403863a.jpg')), likes: 286, date: '2026-11-01' },
+    { id: 'square-xhs-2', title: '十月闻香琉璃器', desc: '十月，闻香而动', img: assetUrl(assetUrl('/images/products/from-xhs/6ac875210000000018012ad0.jpg')), likes: 193, date: '2026-10-30' },
+    { id: 'square-xhs-3', title: '雨后双鸢八角匣', desc: '四时物候 · 雨后双鸢', img: assetUrl(assetUrl('/images/products/from-xhs/6ac32c15000000001303d572.jpg')), likes: 342, date: '2026-10-26' },
+    { id: 'square-xhs-4', title: '海船琉璃摆件', desc: '是大海，是船只', img: assetUrl(assetUrl('/images/products/from-xhs/6ac0851e000000000b007f2c.jpg')), likes: 267, date: '2026-10-24' },
+    { id: 'square-xhs-5', title: '秋日翻页琉璃册', desc: '翻页见秋', img: assetUrl(assetUrl('/images/products/from-xhs/6abb3cf7000000000b00410c.jpg')), likes: 415, date: '2026-10-20' },
+    { id: 'square-xhs-6', title: '匣中藏月', desc: '匣中藏月，月影流转', img: assetUrl(assetUrl('/images/products/from-xhs/6ab3aa25000000000b005c1e.jpg')), likes: 528, date: '2026-10-18' },
+    { id: 'square-xhs-7', title: '天青上新', desc: 'inno Product · 天青系列', img: assetUrl(assetUrl('/images/products/from-xhs/6aaa6ca300000000110353d8.jpg')), likes: 612, date: '2026-10-15' },
+    { id: 'square-xhs-8', title: '夏末可爱小器', desc: '夏末一点可爱', img: assetUrl(assetUrl('/images/products/from-xhs/6aa29c62000000002502dfc9.jpg')), likes: 178, date: '2026-10-12' },
+    { id: 'square-xhs-9', title: '装得下一点光', desc: '装得下一点光的琉璃匣', img: assetUrl(assetUrl('/images/products/from-xhs/6a9e91b1000000002502ec4c.jpg')), likes: 234, date: '2026-10-10' },
+    { id: 'square-xhs-10', title: '于微时见天地', desc: '于微时见天地', img: assetUrl(assetUrl('/images/products/from-xhs/6a9aa5ee000000001001c8af.jpg')), likes: 295, date: '2026-10-08' },
+    { id: 'square-xhs-11', title: '夏日遇见纪念', desc: '谢谢这一夏的遇见', img: assetUrl(assetUrl('/images/products/from-xhs/6a98de400000000011037894.jpg')), likes: 166, date: '2026-10-06' },
+    { id: 'square-xhs-12', title: '晴光湖光委角托盘', desc: '四时物候 · 晴光湖光', img: assetUrl(assetUrl('/images/products/from-xhs/6a901e4300000000210331db.jpg')), likes: 389, date: '2026-10-04' },
+    { id: 'square-xhs-13', title: '湖面接住', desc: '湖面接住了光', img: assetUrl(assetUrl('/images/products/from-xhs/6a8c23ca0000000018018a38.jpg')), likes: 241, date: '2026-10-02' },
+    { id: 'square-xhs-14', title: '秋寂莲香委角匣', desc: '四时物候 · 秋寂莲香', img: assetUrl(assetUrl('/images/products/from-xhs/6a86ef2d0000000017008f49.jpg')), likes: 312, date: '2026-09-28' },
+    { id: 'square-xhs-15', title: '天青兰八角匣', desc: '四时物候 · 天青兰', img: assetUrl(assetUrl('/images/products/from-xhs/6a843c290000000006007f09.jpg')), likes: 278, date: '2026-09-26' },
+    { id: 'square-xhs-16', title: '夏莲叶委角匣', desc: '四时物候 · 夏莲叶', img: assetUrl(assetUrl('/images/products/from-xhs/6a82e96e0000000006006e92.jpg')), likes: 198, date: '2026-09-22' },
+    { id: 'square-xhs-17', title: '白露桂花海棠匣', desc: '四时物候 · 白露桂花', img: assetUrl(assetUrl('/images/products/from-xhs/6a7edbd1000000002402ebf3.jpg')), likes: 356, date: '2026-09-18' },
+    { id: 'square-xhs-18', title: '天青桂花海棠匣', desc: '四时物候 · 天青桂花', img: assetUrl(assetUrl('/images/products/from-xhs/6a7c5c210000000008010f42.jpg')), likes: 289, date: '2026-09-15' },
+    { id: 'square-xhs-19', title: '黄昏凌霄八角匣', desc: '四时物候 · 黄昏凌霄', img: assetUrl(assetUrl('/images/products/from-xhs/6a79b694000000002403c200.jpg')), likes: 245, date: '2026-09-12' },
   ].map((w) => ({
     id: w.id,
     title: w.title,

@@ -31,6 +31,7 @@ import type { ISquareWork } from '@/data/square';
 import { addMySquareWork } from '@/lib/square-storage';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
+import { assetUrl } from '@/lib/asset';
 
 interface UploadWorkDialogProps {
   open: boolean;
@@ -72,10 +73,10 @@ export default function UploadWorkDialog({ open, onOpenChange, onSuccess }: Uplo
   const handleImageUpload = () => {
     // 模拟上传 - 使用 inno.Studio 真实产品图作为占位
     const placeholders = [
-      '/images/products/inno-amber-wei.jpg',
-      '/images/products/celadon-bagua.jpg',
-      '/images/products/begonia-incense.jpg',
-      '/images/products/waldorf.jpg',
+      assetUrl('/images/products/inno-amber-wei.jpg'),
+      assetUrl('/images/products/celadon-bagua.jpg'),
+      assetUrl('/images/products/begonia-incense.jpg'),
+      assetUrl('/images/products/waldorf.jpg'),
     ];
     if (images.length < 6) {
       const nextImg = placeholders[images.length % placeholders.length];

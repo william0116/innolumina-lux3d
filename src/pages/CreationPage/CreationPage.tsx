@@ -47,6 +47,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { assetUrl } from '@/lib/asset';
 
 const STYLE_PRESETS = [
   { label: '东方美学', prompt: '东方美学风格，琉璃器物，雅致内敛' },
@@ -246,27 +247,27 @@ export default function CreationPage() {
       // 预设图片库（按风格分类）
       const imagePool = {
         amber: [ // 琥珀色系
-          '/images/products/inno-amber-wei.jpg',
-          '/images/products/inno-amber-long.jpg',
+          assetUrl('/images/products/inno-amber-wei.jpg'),
+          assetUrl('/images/products/inno-amber-long.jpg'),
         ],
         green: [ // 青绿/翠绿色系
-          '/images/products/green-set.jpg',
-          '/images/products/green-chang.jpg',
-          '/images/products/celadon-bagua.jpg',
+          assetUrl('/images/products/green-set.jpg'),
+          assetUrl('/images/products/green-chang.jpg'),
+          assetUrl('/images/products/celadon-bagua.jpg'),
         ],
         blue: [ // 蓝色系
-          '/images/products/blue-tuoyuan.jpg',
-          '/images/products/long-incense.jpg',
+          assetUrl('/images/products/blue-tuoyuan.jpg'),
+          assetUrl('/images/products/long-incense.jpg'),
         ],
         bamboo: [ // 竹叶/花卉纹样
-          '/images/products/zhuye-bagua.jpg',
-          '/images/products/inno-amber-leaf.jpg',
+          assetUrl('/images/products/zhuye-bagua.jpg'),
+          assetUrl('/images/products/inno-amber-leaf.jpg'),
         ],
         default: [ // 默认
-          '/images/products/inno-amber-cylinder.jpg',
-          '/images/products/inno-amber-group.jpg',
-          '/images/products/begonia-incense.jpg',
-          '/images/products/waldorf.jpg',
+          assetUrl('/images/products/inno-amber-cylinder.jpg'),
+          assetUrl('/images/products/inno-amber-group.jpg'),
+          assetUrl('/images/products/begonia-incense.jpg'),
+          assetUrl('/images/products/waldorf.jpg'),
         ],
       };
 
